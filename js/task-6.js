@@ -24,29 +24,26 @@ const newSize = () => {
 };
 
 const createBoxes = (amount) => {
+  let allElements = "";
   for (let i = minNumber; i <= amount; i++) {
-    const div = document.createElement('div');
-    div.classList.add('divclass');
-    div.style.backgroundColor = getRandomHexColor();
     newSize();
-    div.style.width = `${divWidth}px`;
-    div.style.height = `${divHeight}px`;
-    box.append(div);
-    box.style.display = 'flex';
-    box.style.gap = '10px';
-    box.style.flexWrap = 'wrap';
-    box.style.backgroundColor = '#F6F6FE';
-    box.style.padding = '32px';
-    box.style.width = '500px'
-    box.style.borderRadius = '8px';
-  }
+    const backgroundColor = getRandomHexColor();
+    allElements += `<div class = "divclass"
+      style = "width: ${divWidth}px;
+      height: ${divHeight}px;
+      background-color: ${backgroundColor};"
+      ></div >`;
+  };
+  box.innerHTML = allElements;
+  // box.insertAdjacentHTML('beforeend', allElements);
 };
 
 const destroyBoxes = () => {
   const divDelete = box.querySelectorAll('.divclass');
   divDelete.forEach(del => del.remove());
   formInput.value = 1;
-  box.style.display = 'none';
+  divHeight = 20;
+  divWidth = 20;
 };
 
 btnCreate.addEventListener('click', number => {
@@ -58,6 +55,15 @@ btnCreate.addEventListener('click', number => {
 });
 
 btnDestroy.addEventListener('click', destroyBoxes);
+
+
+      box.style.display = 'flex';
+      box.style.gap = '10px';
+      box.style.flexWrap = 'wrap';
+      box.style.backgroundColor = '#F6F6FE';
+      box.style.padding = '32px';
+      box.style.width = '500px';
+      box.style.borderRadius = '8px';
 
       form.style.gap = '16px';
       form.style.backgroundColor = '#F6F6FE';
